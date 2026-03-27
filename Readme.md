@@ -25,10 +25,16 @@ The Remote Housing Crisis Web Application is a web application developed using t
 - Created A detailed Architecture DEcision Recordes present in the repositary
 - Documented system design and implemantation choices 
 
-### Testing & Quality Assurance (In Progress - Merina Pokhrel)
+### Testing & Quality Assurance (Done - Merina Pokhrel)
+
 - Verifying system functionality through Admin panel
 - Testing documentation created
-- Data consistency and correctness ensured
+- Data consistency and correctness ensured 
+- Conducted functional testing using Django admin panel
+- Verified Housing–Location relationship
+- Created testing documentation (docs/testing.md)
+- Provided screenshots as evidence of system functionality
+
 
 ---
 
