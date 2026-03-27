@@ -18,9 +18,12 @@ The Remote Housing Crisis Web Application is a web application developed using t
 - Models enhanced to include relationships between Location and Housing
 - Improvements made to database structure using ORM
 
-### Documentation (In Progress - Aanchal Gautam)
+### Documentation (Done - Aanchal Gautam)
 - Architecture Decision Records created
 - Other design and implementation decisions documented
+
+- Created A detailed Architecture DEcision Recordes present in the repositary
+- Documented system design and implemantation choices 
 
 ### Testing & Quality Assurance (In Progress - Merina Pokhrel)
 - Verifying system functionality through Admin panel
