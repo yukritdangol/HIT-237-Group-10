@@ -6,4 +6,4 @@ class HousingListView(ListView):
     template_name = 'housing_list.html'
 
     def get_queryset(self):
-        return Housing.objects.all()
+        return Housing.objects.filter(is_available=True).order_by('price')
