@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .navbar {
+
+            background-color: #2f4358;
+
+            color: white;
+
+            padding: 20px;
+
+            text-align: center;
+        }
+
+        .dashboard-container {
+
+            width: 80%;
+
+            margin: 40px auto;
+        }
+
+        .dashboard-card {
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .role {
+
+            color: #2f4358;
+
+            font-weight: bold;
+        }
+
+        .actions {
+
+            margin-top: 30px;
+        }
+
+        .actions a {
+
+            display: inline-block;
+
+            padding: 12px 18px;
+
+            background-color: #2f4358;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            margin-right: 10px;
+        }
+
+        .actions a:hover {
+            background-color: #3d5672;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h1>Remote Housing Crisis Dashboard</h1>
+    </div>
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-card">
+
+            <h1>
+                Welcome, {{ request.user.username }}
+            </h1>
+
+            <p>
+                <strong>Role:</strong>
+
+                <span class="role">
+                    {{ profile.role }}
+                </span>
+            </p>
+
+            <p>
+                <strong>Community:</strong>
+                {{ profile.community_name }}
+            </p>
+
+            <p>
+                <strong>Contact:</strong>
+                {{ profile.contact_number }}
+            </p>
+
+            <div class="actions">
+
+                <a href="/">
+                    View Housing
+                </a>
+            
+            
+                {% if profile.role == 'USER' %}
+            
+                    <a href="#">
+                        Request Housing
+                    </a>
+            
+                {% endif %}
+            
+            
+                {% if profile.role == 'MANAGER' %}
+            
+                    <a href="/admin/housing/housing/add/">
+                        Add Housing
+                    </a>
+            
+                    <a href="/admin/">
+                        Manage Listings
+                    </a>
+            
+                {% endif %}
+            
+            
+                {% if profile.role == 'ADMIN' %}
+            
+                    <a href="/admin/">
+                        Admin Panel
+                    </a>
+            
+                    <a href="/admin/auth/user/">
+                        Manage Users
+                    </a>
+            
+                {% endif %}
+            
+            
+                <a href="/accounts/logout/">
+                    Logout
+                </a>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
