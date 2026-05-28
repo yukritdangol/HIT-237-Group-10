@@ -12,6 +12,8 @@ from accounts.models import UserProfile
 
 from housing.services.housing_service import HousingService
 
+from django.contrib import messages
+
 from .exceptions import (
     InvalidHousingPriceError,
     UnauthorizedActionError
@@ -64,6 +66,11 @@ def create_housing_view(request):
                 location,
                 price,
                 description
+            )
+
+            messages.success(
+                request,
+                "Housing listing created successfully."
             )
 
             return redirect('/')

@@ -1,78 +1,88 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
+{% block content %}
 
-    <title>Unauthorized Access</title>
+<style>
 
-    <style>
+    .box {
 
-        body {
+        background-color: white;
 
-            background-color: #f4f4f4;
+        width: 550px;
 
-            font-family: Arial, sans-serif;
+        margin: 100px auto;
 
-            text-align: center;
+        padding: 45px;
 
-            padding-top: 100px;
-        }
+        border-radius: 12px;
 
-        .box {
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
 
-            background-color: white;
+        text-align: center;
+    }
 
-            width: 500px;
+    h1 {
 
-            margin: auto;
+        color: #c0392b;
 
-            padding: 40px;
+        margin-bottom: 20px;
+    }
 
-            border-radius: 10px;
+    p {
 
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
-        }
+        color: #555;
 
-        h1 {
+        font-size: 17px;
 
-            color: #c0392b;
-        }
+        margin-bottom: 30px;
+    }
 
-        a {
+    .buttons a {
 
-            display: inline-block;
+        display: inline-block;
 
-            margin-top: 20px;
+        margin: 10px;
 
-            padding: 12px 20px;
+        padding: 12px 22px;
 
-            background-color: #2f4358;
+        background-color: #2f4358;
 
-            color: white;
+        color: white;
 
-            text-decoration: none;
+        text-decoration: none;
 
-            border-radius: 8px;
-        }
+        border-radius: 8px;
 
-    </style>
+        transition: 0.3s;
+    }
 
-</head>
+    .buttons a:hover {
 
-<body>
+        background-color: #3d5672;
+    }
 
-    <div class="box">
+</style>
 
-        <h1>403 Unauthorized</h1>
+<div class="box">
 
-        <p>{{ error }}</p>
+    <h1>403 Unauthorized Access</h1>
+
+    <p>
+        {{ error }}
+    </p>
+
+    <div class="buttons">
 
         <a href="/accounts/dashboard/">
-            Return Home
+            Dashboard
+        </a>
+
+        <a href="/">
+            View Housing
         </a>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

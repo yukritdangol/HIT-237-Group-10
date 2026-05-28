@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Remote Housing Crisis</title>
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+
+            background-color: #2f4358;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin-left: 20px;
+
+            font-size: 16px;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+
+            color: #d6e4f0;
+        }
+
+        .main-content {
+
+            padding: 30px;
+        }
+
+        .message {
+
+            width: 80%;
+
+            margin: 20px auto;
+
+            padding: 15px;
+
+            background-color: #d4edda;
+
+            color: #155724;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Remote Housing Crisis
+        </div>
+
+        <div class="nav-links">
+
+            {% if user.is_authenticated %}
+
+                <a href="/accounts/dashboard/">
+                    Dashboard
+                </a>
+
+                <a href="/">
+                    Housing
+                </a>
+
+                {% if request.user.userprofile.role == 'MANAGER' %}
+
+                <a href="/create/">
+                    Add Housing
+                </a>
+
+                {% endif %}
+
+                <a href="/accounts/logout/">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/accounts/login/">
+                    Login
+                </a>
+
+                <a href="/accounts/signup/">
+                    Signup
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+    <div class="main-content">
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+</body>
+
+</html>

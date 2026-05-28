@@ -1,145 +1,157 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
+{% block content %}
 
-    <title>Create Housing</title>
+<style>
 
-    <style>
+    .container {
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-            margin: 0;
-            padding: 0;
-        }
+        width: 550px;
 
-        .container {
+        margin: 50px auto;
 
-            width: 500px;
+        background-color: white;
 
-            margin: 60px auto;
+        padding: 35px;
 
-            background-color: white;
+        border-radius: 12px;
 
-            padding: 30px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    }
 
-            border-radius: 10px;
+    h1 {
 
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
-        }
+        text-align: center;
 
-        h1 {
+        color: #2f4358;
 
-            text-align: center;
+        margin-bottom: 30px;
+    }
 
-            color: #2f4358;
-        }
+    input,
+    textarea,
+    select {
 
-        input,
-        textarea,
-        select {
+        width: 100%;
 
-            width: 100%;
+        padding: 14px;
 
-            padding: 12px;
+        margin-top: 10px;
 
-            margin-top: 10px;
+        margin-bottom: 20px;
 
-            margin-bottom: 20px;
+        border-radius: 8px;
 
-            border-radius: 6px;
+        border: 1px solid #ccc;
 
-            border: 1px solid #ccc;
-        }
+        font-size: 15px;
 
-        button {
+        box-sizing: border-box;
+    }
 
-            width: 100%;
+    textarea {
 
-            padding: 14px;
+        min-height: 120px;
 
-            background-color: #2f4358;
+        resize: vertical;
+    }
 
-            color: white;
+    button {
 
-            border: none;
+        width: 100%;
 
-            border-radius: 8px;
+        padding: 14px;
 
-            font-size: 16px;
+        background-color: #2f4358;
 
-            cursor: pointer;
-        }
+        color: white;
 
-        .error {
+        border: none;
 
-            color: red;
+        border-radius: 8px;
 
-            margin-bottom: 20px;
-        }
+        font-size: 16px;
 
-    </style>
+        cursor: pointer;
 
-</head>
+        transition: 0.3s;
+    }
 
-<body>
+    button:hover {
 
-    <div class="container">
+        background-color: #3d5672;
+    }
 
-        <h1>Create Housing Listing</h1>
+    .error {
 
-        {% if error %}
+        background-color: #ffe6e6;
 
-            <div class="error">
-                {{ error }}
-            </div>
+        color: #c0392b;
 
-        {% endif %}
+        padding: 12px;
 
-        <form method="POST">
+        border-radius: 8px;
 
-            {% csrf_token %}
+        margin-bottom: 20px;
 
-            <input
-                type="text"
-                name="title"
-                placeholder="Housing Title"
-                required
-            >
+        text-align: center;
+    }
 
-            <select name="location">
+</style>
 
-                {% for location in locations %}
+<div class="container">
 
-                    <option value="{{ location.id }}">
-                        {{ location.name }}
-                    </option>
+    <h1>Create Housing Listing</h1>
 
-                {% endfor %}
+    {% if error %}
 
-            </select>
+        <div class="error">
+            {{ error }}
+        </div>
 
-            <input
-                type="number"
-                name="price"
-                placeholder="Price"
-                required
-            >
+    {% endif %}
 
-            <textarea
-                name="description"
-                placeholder="Description"
-            ></textarea>
+    <form method="POST">
 
-            <button type="submit">
-                Create Listing
-            </button>
+        {% csrf_token %}
 
-        </form>
+        <input
+            type="text"
+            name="title"
+            placeholder="Housing Title"
+            required
+        >
 
-    </div>
+        <select name="location">
 
-</body>
+            {% for location in locations %}
 
-</html>
+                <option value="{{ location.id }}">
+                    {{ location.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <input
+            type="number"
+            name="price"
+            placeholder="Price"
+            required
+        >
+
+        <textarea
+            name="description"
+            placeholder="Description"
+        ></textarea>
+
+        <button type="submit">
+            Create Listing
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

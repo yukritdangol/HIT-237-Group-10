@@ -1,97 +1,137 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Remote Housing Listings</title>
+{% extends 'base.html' %}
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-        }
+{% block content %}
 
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+<style>
 
-        .container {
-            width: 80%;
-            margin: auto;
-            margin-top: 30px;
-        }
+    .page-title {
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
+        text-align: center;
 
-        .title {
-            font-size: 20px;
-            font-weight: bold;
-        }
+        color: #2f4358;
 
-        .location {
-            color: #555;
-            margin-top: 5px;
-        }
+        margin-bottom: 40px;
 
-        .price {
-            color: green;
-            font-weight: bold;
-            margin-top: 5px;
-        }
+        font-size: 38px;
+    }
 
-        .description {
-            margin-top: 10px;
-            color: #333;
-        }
+    .container {
 
-        .status {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+        width: 85%;
 
-        .available {
-            color: green;
-        }
+        margin: auto;
+    }
 
-        .not-available {
-            color: red;
-        }
+    .card {
 
-        .empty {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 18px;
-            color: gray;
-        }
-    </style>
-</head>
+        background: white;
 
-<body>
+        padding: 25px;
 
-<header>
-    <h1>Remote Housing Crisis Listings</h1>
-</header>
+        margin-bottom: 20px;
+
+        border-radius: 12px;
+
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.12);
+
+        transition: 0.3s ease;
+    }
+
+    .card:hover {
+
+        transform: translateY(-5px);
+    }
+
+    .title {
+
+        font-size: 24px;
+
+        font-weight: bold;
+
+        color: #2f4358;
+    }
+
+    .location {
+
+        color: #666;
+
+        margin-top: 8px;
+
+        font-size: 16px;
+    }
+
+    .price {
+
+        color: green;
+
+        font-weight: bold;
+
+        margin-top: 10px;
+
+        font-size: 18px;
+    }
+
+    .description {
+
+        margin-top: 15px;
+
+        color: #333;
+
+        line-height: 1.6;
+    }
+
+    .status {
+
+        margin-top: 15px;
+
+        font-size: 15px;
+
+        font-weight: bold;
+    }
+
+    .available {
+
+        color: green;
+    }
+
+    .not-available {
+
+        color: red;
+    }
+
+    .empty {
+
+        text-align: center;
+
+        margin-top: 60px;
+
+        font-size: 22px;
+
+        color: gray;
+    }
+
+</style>
+
+<h1 class="page-title">
+    Remote Housing Listings
+</h1>
 
 <div class="container">
 
     {% for house in object_list %}
+
         <div class="card">
-            <div class="title">{{ house.title }}</div>
+
+            <div class="title">
+                {{ house.title }}
+            </div>
 
             <div class="location">
-                Location: {{ house.location }}
+                📍 {{ house.location }}
             </div>
 
             <div class="price">
-                Price: ${{ house.price }}
+                ${{ house.price }}
             </div>
 
             <div class="description">
@@ -99,21 +139,35 @@
             </div>
 
             <div class="status">
+
                 Status:
+
                 {% if house.is_available %}
-                    <span class="available">Available</span>
+
+                    <span class="available">
+                        Available
+                    </span>
+
                 {% else %}
-                    <span class="not-available">Not Available</span>
+
+                    <span class="not-available">
+                        Not Available
+                    </span>
+
                 {% endif %}
+
             </div>
+
         </div>
+
     {% empty %}
+
         <div class="empty">
             No housing available at the moment.
         </div>
+
     {% endfor %}
 
 </div>
 
-</body>
-</html>
+{% endblock %}
