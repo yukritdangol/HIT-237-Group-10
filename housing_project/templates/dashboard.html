@@ -1,177 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
+{% block content %}
 
-    <meta charset="UTF-8">
+<style>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    .dashboard-container {
 
-    <title>Dashboard</title>
+        width: 80%;
 
-    <style>
+        margin: 40px auto;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-        }
+    .dashboard-card {
 
-        .navbar {
+        background-color: white;
 
-            background-color: #2f4358;
+        padding: 30px;
 
-            color: white;
+        border-radius: 12px;
 
-            padding: 20px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    }
 
-            text-align: center;
-        }
+    h1 {
+        margin-top: 0;
+    }
 
-        .dashboard-container {
+    .role {
 
-            width: 80%;
+        color: #2f4358;
 
-            margin: 40px auto;
-        }
+        font-weight: bold;
+    }
 
-        .dashboard-card {
+    .actions {
 
-            background-color: white;
+        margin-top: 30px;
+    }
 
-            padding: 30px;
+    .actions a {
 
-            border-radius: 12px;
+        display: inline-block;
 
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
-        }
+        padding: 12px 18px;
 
-        h1 {
-            margin-top: 0;
-        }
+        background-color: #2f4358;
 
-        .role {
+        color: white;
 
-            color: #2f4358;
+        text-decoration: none;
 
-            font-weight: bold;
-        }
+        border-radius: 8px;
 
-        .actions {
+        margin-right: 10px;
 
-            margin-top: 30px;
-        }
+        margin-bottom: 10px;
 
-        .actions a {
+        transition: 0.3s;
+    }
 
-            display: inline-block;
+    .actions a:hover {
 
-            padding: 12px 18px;
+        background-color: #3d5672;
 
-            background-color: #2f4358;
+        transform: translateY(-2px);
+    }
 
-            color: white;
+</style>
 
-            text-decoration: none;
+<div class="dashboard-container">
 
-            border-radius: 8px;
+    <div class="dashboard-card">
 
-            margin-right: 10px;
-        }
+        <h1>
+            Welcome, {{ request.user.username }}
+        </h1>
 
-        .actions a:hover {
-            background-color: #3d5672;
-        }
+        <p>
+            <strong>Role:</strong>
 
-    </style>
+            <span class="role">
+                {{ profile.role }}
+            </span>
+        </p>
 
-</head>
+        <p>
+            <strong>Community:</strong>
+            {{ profile.community_name }}
+        </p>
 
-<body>
+        <p>
+            <strong>Contact:</strong>
+            {{ profile.contact_number }}
+        </p>
 
-    <div class="navbar">
-        <h1>Remote Housing Crisis Dashboard</h1>
-    </div>
+        <div class="actions">
 
-    <div class="dashboard-container">
+            <a href="/">
+                View Housing
+            </a>
 
-        <div class="dashboard-card">
+            {% if profile.role == 'USER' %}
 
-            <h1>
-                Welcome, {{ request.user.username }}
-            </h1>
+            <a href="/">
+                Browse Housing
+            </a>
 
-            <p>
-                <strong>Role:</strong>
+            {% endif %}
 
-                <span class="role">
-                    {{ profile.role }}
-                </span>
-            </p>
+            {% if profile.role == 'MANAGER' %}
 
-            <p>
-                <strong>Community:</strong>
-                {{ profile.community_name }}
-            </p>
-
-            <p>
-                <strong>Contact:</strong>
-                {{ profile.contact_number }}
-            </p>
-
-            <div class="actions">
-
-                <a href="/">
-                    View Housing
+                <a href="/create/">
+                    Add Housing
                 </a>
-            
-            
-                {% if profile.role == 'USER' %}
-            
-                    <a href="#">
-                        Request Housing
-                    </a>
-            
-                {% endif %}
-            
-            
-                {% if profile.role == 'MANAGER' %}
-            
-                    <a href="/admin/housing/housing/add/">
-                        Add Housing
-                    </a>
-            
-                    <a href="/admin/">
-                        Manage Listings
-                    </a>
-            
-                {% endif %}
-            
-            
-                {% if profile.role == 'ADMIN' %}
-            
-                    <a href="/admin/">
-                        Admin Panel
-                    </a>
-            
-                    <a href="/admin/auth/user/">
-                        Manage Users
-                    </a>
-            
-                {% endif %}
-            
-            
-                <a href="/accounts/logout/">
-                    Logout
+
+                <a href="/admin/">
+                    Manage Listings
                 </a>
-            
-            </div>
+
+            {% endif %}
+
+            {% if profile.role == 'ADMIN' %}
+
+                <a href="/admin/">
+                    Admin Panel
+                </a>
+
+                <a href="/admin/auth/user/">
+                    Manage Users
+                </a>
+
+            {% endif %}
+
+            <a href="/accounts/logout/">
+                Logout
+            </a>
 
         </div>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

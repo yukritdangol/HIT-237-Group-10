@@ -1,148 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+{% block content %}
 
-    <style>
+<style>
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-        }
+    .signup-container {
 
-        .navbar {
-            background-color: #2f4358;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+        width: 520px;
 
-        .navbar h1 {
-            margin: 0;
-            font-size: 42px;
-        }
+        margin: 50px auto;
 
-        .signup-container {
+        background-color: white;
 
-            width: 500px;
+        padding: 40px;
 
-            margin: 50px auto;
+        border-radius: 12px;
 
-            background-color: white;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    }
 
-            padding: 40px;
+    h2 {
 
-            border-radius: 12px;
+        text-align: center;
 
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
-        }
+        margin-bottom: 30px;
 
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2f4358;
-        }
+        color: #2f4358;
+    }
 
-        form p {
-            display: flex;
-            flex-direction: column;
-        }
+    form p {
 
-        input,
-        select {
+        display: flex;
 
-            padding: 12px;
+        flex-direction: column;
+    }
 
-            margin-top: 8px;
+    input,
+    select {
 
-            margin-bottom: 18px;
+        padding: 12px;
 
-            border-radius: 6px;
+        margin-top: 8px;
 
-            border: 1px solid #ccc;
+        margin-bottom: 18px;
 
-            font-size: 15px;
-        }
+        border-radius: 6px;
 
-        button {
+        border: 1px solid #ccc;
 
-            width: 100%;
+        font-size: 15px;
+    }
 
-            padding: 14px;
+    button {
 
-            background-color: #2f4358;
+        width: 100%;
 
-            color: white;
+        padding: 14px;
 
-            border: none;
+        background-color: #2f4358;
 
-            border-radius: 8px;
+        color: white;
 
-            font-size: 16px;
+        border: none;
 
-            cursor: pointer;
-        }
+        border-radius: 8px;
 
-        button:hover {
-            background-color: #3d5672;
-        }
+        font-size: 16px;
 
-        .login-link {
+        cursor: pointer;
 
-            margin-top: 20px;
+        transition: 0.3s;
+    }
 
-            text-align: center;
-        }
+    button:hover {
 
-        .login-link a {
+        background-color: #3d5672;
+    }
 
-            text-decoration: none;
+    .login-link {
 
-            color: #2f4358;
+        margin-top: 20px;
 
-            font-weight: bold;
-        }
+        text-align: center;
+    }
 
-    </style>
+    .login-link a {
 
-</head>
+        text-decoration: none;
 
-<body>
+        color: #2f4358;
 
-    <div class="navbar">
-        <h1>Remote Housing Crisis</h1>
-    </div>
+        font-weight: bold;
+    }
 
-    <div class="signup-container">
+</style>
 
-        <h2>Create Account</h2>
+<div class="signup-container">
 
-        <form method="POST">
+    <h2>Create Account</h2>
 
-            {% csrf_token %}
+    <form method="POST">
 
-            {{ form.as_p }}
+        {% csrf_token %}
 
-            <button type="submit">
-                Register
-            </button>
+        {{ form.as_p }}
 
-        </form>
+        <button type="submit">
+            Register
+        </button>
 
-        <div class="login-link">
-            Already have an account?
-            <a href="/accounts/login/">
-                Login
-            </a>
-        </div>
+    </form>
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="/accounts/login/">
+            Login
+        </a>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

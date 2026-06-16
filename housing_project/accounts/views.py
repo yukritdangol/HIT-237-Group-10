@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-
 from django.contrib.auth import login, logout
-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
@@ -56,6 +54,10 @@ def login_view(request):
             user = form.get_user()
 
             login(request, user)
+            messages.success(
+                request,
+                "Login successful."
+            )
 
             return redirect('dashboard')
 
@@ -75,6 +77,10 @@ def login_view(request):
 def logout_view(request):
 
     logout(request)
+    messages.success(
+        request,
+        "Logged out successfully."
+    )
 
     return redirect('login')
 
